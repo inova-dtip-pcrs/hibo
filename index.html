@@ -1,0 +1,1272 @@
+<!--
+ * title="HiBO"
+ * version="1.7"
+ * date="10/04/2024"
+ * author="Moser Silva Fagundes"
+ *
+ * This file is part of HiBO (is the past named HBO).
+ *
+ * HiBO is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * HiBO is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with HiBO.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta title="HiBO" version="1.6" date="14/03/2024" author="Moser Silva Fagundes">
+    <title>Históricos e Termos de Informações</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/hibo.css">
+</head>
+
+<body onload="document.formularioPrincipal.reset();">
+
+    <!--
+        MENU NAVBAR
+    -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link pointer mx-3" id="config">Configurações</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pointer mx-3" id="programa">Sobre o Programa</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--
+        JUMBOTRON
+    -->
+    <div class="jumbotron jumbotron-fluid text-center p-4">
+        <div class="container">
+            <p class="lead mb-0">
+                <strong>Sistema de Apoio para Construção de Históricos e Termos de Informações</strong>
+            </p>
+            <p class="lead mb-0">Registros de Violência Doméstica e Familiar</p>
+        </div>
+    </div>
+
+    <!--
+        FORM
+    -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-10 col-lg-8">
+                <form name="formularioPrincipal">
+
+                    <!-- 1. OCORRENCIA APRESENTADA POR ORGAO DE SEGURANCA PUBLICA -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">1. Ocorrência apresentada por órgão de segurança pública?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rOrgaoSP" id="rOrgaoSPN" value="Nao"
+                                    checked>
+                                <label class="form-check-label" for="rOrgaoSP">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rOrgaoSP" id="rOrgaoSPS" value="Sim">
+                                <label class="form-check-label" for="rOrgaoSP">
+                                    Sim
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div id="divOrgaoSP" class="form-group col-sm-12 form-row mb-0 pb-0">
+                            <div class="form-group col-sm-6">
+                                <label class="main-label" for="sOrgaoSP" id="lOrgaoSP">Qual orgão de segurança pública?
+                                </label>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <select name="sOrgaoSP" id="sOrgaoSP" class="form-control form-control-sm">
+                                    <option value="BM">Guarnição da Brigada Militar</option>
+                                    <option value="PC">Equipe da Polícia Civil</option>
+                                    <option value="GM">Equipe da Guarda Municipal</option>
+                                    <option value="PRE">Guarnição da Polícia Rodoviária Estadual</option>
+                                    <option value="PRF">Equipe da Polícia Rodoviária Federal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. DADOS DA VITIMA-->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label" id="lDadosVitima">2. Informe os dados da vítima:</label>
+                            <div id="divNomeVitima" class="form-group col-sm-12 form-row mb-0 mt-2 pb-0">
+                                <div class="form-group col-sm-2 sublinhado text-center">Nome</div>
+                                <div class="form-group col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" id="iNomeVitima" placeholder="Maria Silva">
+                                </div>
+                            </div>
+
+                            <div id="divIdadeVitima" class="form-group col-sm-12 form-row my-0 pb-0">
+                                <div class="form-group col-sm-2 sublinhado text-center">Idade</div>
+                                <div class="form-group col-sm-2">
+                                    <input type="number" class="form-control form-control-sm text-center" id="iIdadeVitima" value="18">
+                                </div>
+                                <div class="form-group col-sm-2 text-left">anos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aDadosVitima">
+                        <div class="alert alert-warning">
+                            É obrigatório o preenchimento do nome e a idade da vítima.
+                        </div>
+                    </div>
+
+                    <!-- 3. TIPO DE RELACIONAMENTO? TEMPO DE RELACIONAMENTO? TEMPO SEPARADOS? -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">3. Qual tipo de relacionamento a vítima e o suspeito <span
+                                    class="sublinhado">tem</span> ou <span class="sublinhado">tiveram</span>?</label>
+                            <div class="form-check">
+
+                                <div class="row">
+                                    <div class="col-sm-4 sublinhado">União estável</div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="rRelacionamento"
+                                            id="rRelacionamento1" value="Uniao" checked>
+                                        <label class="form-check-label" for="rRelacionamento1">
+                                            Companheiro
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="rRelacionamento"
+                                            id="rRelacionamento1-Ex" value="Uniao-Ex">
+                                        <label class="form-check-label" for="rRelacionamento1-Ex">
+                                            Ex-companheiro
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4 sublinhado">Casamento</div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="rRelacionamento"
+                                            id="rRelacionamento2" value="Casados">
+                                        <label class="form-check-label" for="rRelacionamento2">
+                                            Marido
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="rRelacionamento"
+                                            id="rRelacionamento2-Ex" value="Casados-Ex">
+                                        <label class="form-check-label" for="rRelacionamento2-Ex">
+                                            Ex-marido
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4 sublinhado">Namoro</div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="rRelacionamento"
+                                            id="rRelacionamento4" value="Namorados">
+                                        <label class="form-check-label" for="rRelacionamento4">
+                                            Namorado
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="rRelacionamento"
+                                            id="rRelacionamento4-Ex" value="Namorados-Ex">
+                                        <label class="form-check-label" for="rRelacionamento4-Ex">
+                                            Ex-namorado
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4 main-label"></div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="rRelacionamento"
+                                            id="rRelacionamento3" value="Outro">
+                                        <label class="form-check-label" for="rRelacionamento3">
+                                            Outro
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="divTempoRelacionamento" class="form-group col-sm-12 form-row mb-0 pb-0">
+                            <div class="form-group col-sm-7">
+                                <label class="main-label" for="iTempoRelacionamento" id="lTempoRelacionamento">Desde
+                                    quando vivem em união estável?
+                                </label>
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <select name="sTempoRelacionamento" id="sTempoRelacionamento"
+                                    class="form-control form-control-sm">
+                                    <option value="desde">desde</option>
+                                    <option value="há">há</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control form-control-sm" id="iTempoRelacionamento"
+                                    placeholder="janeiro de 2019">
+
+                            </div>
+                        </div>
+
+                        <div id="divTempoSeparados" class="form-group col-sm-12 form-row mb-0 pb-0">
+                            <div class="form-group col-sm-7">
+                                <label class="main-label" for="iTempoSeparados" id="lTempoSeparados">Há quanto tempo
+                                    estão separados?
+                                </label>
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <select name="sTempoSeparados" id="sTempoSeparados"
+                                    class="form-control form-control-sm">
+                                    <option value="desde">desde</option>
+                                    <option value="há">há</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control form-control-sm" id="iTempoSeparados"
+                                    placeholder="janeiro de 2020">
+                            </div>
+                        </div>
+                        <div id="divOutroRelacionamento" class="form-group col-sm-12">
+                            <label id="lOutroRelacionamento" for="taOutroRelacionamento" class="main-label">
+                                Detalhamento do relacionamento:
+                            </label>
+                            <textarea class="form-control" name="taOutroRelacionamento" id="taOutroRelacionamento"
+                                rows="6">A vítima relata que sofreu violência praticada pelo </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aTempoRelacionamento">
+                        <div class="alert alert-warning">
+                            É obrigatório o preenchimento do tempo de relacionamento e do tempo separados.
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aOutroRelacionamento">
+                        <div class="alert alert-warning">
+                            O relacionamento deve ser descrito.
+                        </div>
+                    </div>
+
+ 
+                    <!-- 4. MESMA RESIDENCIA? -->
+                    <div id="divMesmaResidencia" class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">4. Estão vivendo na mesma residência?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rMesmaResidencia"
+                                    id="rMesmaResidenciaN" value="Nao" checked>
+                                <label class="form-check-label" for="rMesmaResidenciaN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rMesmaResidencia"
+                                    id="rMesmaResidenciaS" value="Sim">
+                                <label class="form-check-label" for="rMesmaResidenciaS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="divLocalResidencia" class="form-row form-group col-sm-12 mt-3">
+                            <label id="lLocalResidencia" for="iLocalResidencia" class="main-label">Informe o endereço
+                                onde residem</label>
+                            <input type="text" class="form-control  form-control-sm" id="iLocalResidencia"
+                                placeholder="Especificar o local (rua, número, complemento, cidade)">
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aLocalResidencia">
+                        <div class="alert alert-warning">
+                            É obrigatório o preenchimento do local de residência caso as partes vivam no mesmo endereço.
+                        </div>
+                    </div>
+
+
+                    <!-- 5. PROLE / FILHOS -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">5. A vítima possui filho(s)?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rFilhos" id="rFilhosN" value="Nao"
+                                    checked>
+                                <label class="form-check-label" for="rFilhosN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rFilhos" id="rFilhosS" value="Sim">
+                                <label class="form-check-label" for="rFilhosS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="divFilhos" class="form-row mt-3">
+
+                            <div class="form-group col-sm-6">
+                                <label for="sNumeroFilhos" class="main-label">Quantos filhos a vítima possui?</label>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <select name="sNumeroFilhos" id="sNumeroFilhos" class="form-control form-control-sm">
+                                    <option value="um">um</option>
+                                    <option value="dois">dois</option>
+                                    <option value="três">três</option>
+                                    <option value="quatro">quatro</option>
+                                    <option value="cinco">cinco</option>
+                                    <option value="seis">seis</option>
+                                    <option value="sete">sete</option>
+                                    <option value="oito">oito</option>
+                                    <option value="nove">nove</option>
+                                    <option value="dez">dez</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-3"></div>
+
+
+                            <div class="form-group col-sm-6">
+                                <label for="sNumeroFilhosMenores" class="main-label">Quantos filhos são menores de
+                                    idade?</label>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <select name="sNumeroFilhosMenores" id="sNumeroFilhosMenores"
+                                    class="form-control form-control-sm">
+                                    <option value="nenhum">nenhum</option>
+                                    <option value="um">um</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-3"></div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="sNumeroFilhosVivendo" class="main-label">Quantos filhos vivem com a
+                                    vítima?</label>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <select name="sNumeroFilhosVivendo" id="sNumeroFilhosVivendo"
+                                    class="form-control form-control-sm">
+                                    <option value="nenhum">nenhum</option>
+                                    <option value="um">um</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-3"></div>
+                        </div>
+                    </div>
+
+
+                    <!-- 6. CONDUTA DELITIVA -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label" id="lConduta" for="taConduta">6. Descreva a conduta delitiva do suspeito:</label>
+                            <textarea class="form-control" name="taConduta" id="taConduta"
+                                rows="8">Relata, ainda, que NA DATA DO FATO, o suspeito </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aConduta">
+                        <div class="alert alert-warning">
+                            A conduta delitiva deve ser descrita.
+                        </div>
+                    </div>
+
+
+                    <!-- 7. LESAO CORPORAL -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">7. Há lesão corporal na vítima?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rLesao" id="rLesaoN" value="Nao"
+                                    checked>
+                                <label class="form-check-label" for="rLesaoN">
+                                    Não
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rLesao" id="rLesaoS" value="Sim">
+                                <label class="form-check-label" for="rLesaoS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="ml-0 pl-0" id="divAtendimento">
+
+
+                            <div class="form-group col-sm-12 pl-1">
+                                <label class="main-label">A vítima procurou atendimento médico?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rAtendimento" id="rAtendimentoN"
+                                        value="Nao" checked>
+                                    <label class="form-check-label" for="rAtendimentoN">
+                                        Não
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rAtendimento" id="rAtendimentoS"
+                                        value="Sim">
+                                    <label class="form-check-label" for="rAtendimentoS">
+                                        Sim
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="divLocalAtendimento" class="form-row form-group col-sm-12 mt-3 pl-2">
+                                <label id="lLocalAtendimento" for="iLocalAtendimento" class="main-label">Onde a vítima
+                                    procurou atendimento médico?</label>
+                                <input type="text" class="form-control  form-control-sm" id="iLocalAtendimento"
+                                    placeholder="Especificar o local (nome do hospital ou da unidade)">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aLocalAtendimento">
+                        <div class="alert alert-warning">
+                            É obrigatório informar o nome do local onde a vítima procurou atendimento médico.
+                        </div>
+                    </div>
+
+                    <!-- 8. TESTEMUNHAS -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">8. Há testemunha(s)?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rTestemunha" id="rTestemunhaN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rTestemunhaN">
+                                    Não há testemunhas
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rTestemunha" id="rTestemunhaSQ"
+                                    value="SimQ">
+                                <label class="form-check-label" for="rTestemunhaSQ">
+                                    Sim, e já foram devidamente qualificadas no SPJ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rTestemunha" id="rTestemunhaS"
+                                    value="Sim">
+                                <label class="form-check-label" for="rTestemunhaS">
+                                    Sim, mas <span class="sublinhado">não</span> foram completamente
+                                    qualificadas no SPJ
+                                </label>
+                            </div>
+                        </div>
+                        <div id="divTestemunha" class="form-group col-sm-12 mb-0">
+                            <div class="form-row">
+                                <div class="form-group col-sm-5 mb-0">
+                                    <label class="main-label">Nome da testemunha:</label>
+                                </div>
+                                <div class="form-group col-sm-7 mb-0">
+                                    <label class="main-label">Contato:</label>
+                                </div>
+                            </div>
+
+                            <div id="divListaTestemunhas">
+                                <div class="form-row" id="divDadosTestemunha-1">
+                                    <div class="form-group col-sm-5">
+                                        <input type="text" class="form-control  form-control-sm" id="iNomeTestemunha"
+                                            placeholder="Nome completo">
+                                    </div>
+                                    <div class="form-group col-sm-7">
+                                        <input type="text" class="form-control  form-control-sm" id="iContatoTestemunha"
+                                            placeholder="Telefone, endereço, etc. (ou não soube informar)">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-sm-12">
+                                    <span class="btn btn-light btn-sm" id="spanAdicionarNovaTestemunha">Adicionar nova
+                                        testemunha</span>
+                                    <span class="btn btn-light btn-sm" id="spanRemoverTestemunha">Remover
+                                        testemunha</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aListaTestemunhas">
+                        <div class="alert alert-warning">
+                            Informe o nome das testemunhas e seus respectivos contatos.
+                        </div>
+                    </div>
+
+
+                    <!-- 9. REPRESENTACAO CRIMINAL / ACAO PENAL PUBLICA -->
+                    <div id="divRepresentacao" class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">9. A vítima deseja representar criminalmente?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rRepresentacao" id="rRepresentacaoN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rRepresentacaoN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rRepresentacao" id="rRepresentacaoS"
+                                    value="Sim">
+                                <label class="form-check-label" for="rRepresentacaoS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. MEDIDAS PROTETIVAS -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">10. A vítima solicita Medida Protetiva de Urgência?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rMedidas" id="rMedidasN" value="Nao"
+                                    checked>
+                                <label class="form-check-label" for="rMedidasN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class=" form-check">
+                                <input class="form-check-input" type="radio" name="rMedidas" id="rMedidasS" value="Sim">
+                                <label class="form-check-label" for="rMedidasS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- 11. ACAO PENAL PRIVADA -->
+                     <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">11. Há delito de ação penal privada?
+
+                            </label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAcaoPrivada" id="rAcaoPrivadaN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rAcaoPrivadaN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAcaoPrivada" id="rAcaoPrivadaS"
+                                    value="Sim">
+                                <label class="form-check-label" for="rAcaoPrivadaS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="divAcaoPrivada" class="form-row form-group col-sm-12">
+                            <label class="main-label" id="lAcaoPrivada" for="taAcaoPrivada">Detalhamento da ação penal
+                                privada:</label>
+                            <textarea class="form-control" name="taAcaoPrivada" id="taAcaoPrivada"
+                                rows="5">A vítima fica ciente do prazo decadencial de seis meses para propor queixa-crime através de advogado no tocante às </textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row" id="aAcaoPrivada">
+                        <div class="alert alert-warning">
+                            Descreva os detalhes relativos à ação penal privada.
+                        </div>
+                    </div>
+
+                    <!-- 12. ARMAS -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">12. Foram localizadas armas no ARM/SINARM em nome do
+                                suspeito?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rArmas" id="rArmasN" value="Nao"
+                                    checked>
+                                <label class="form-check-label" for="rArmasN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rArmas" id="rArmasS" value="Sim">
+                                <label class="form-check-label" for="rArmasS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 13. AMEACA ARMAS -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">13. O suspeito usou ou ameaçou usar arma de fogo contra a vítima,
+                                ou tem fácil acesso a arma?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAmeacaArma" id="rAmeacaArmaN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rAmeacaArmaN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAmeacaArma" id="rAmeacaArmaSU"
+                                    value="Usou">
+                                <label class="form-check-label" for="rAmeacaArmaSU">
+                                    Sim, já <span class="sublinhado">usou</span> arma de fogo
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAmeacaArma" id="rAmeacaArmaSA"
+                                    value="Ameacou">
+                                <label class="form-check-label" for="rAmeacaArmaSA">
+                                    Sim, <span class="sublinhado">ameaçou</span> usar arma de fogo
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAmeacaArma" id="rAmeacaArmaSF"
+                                    value="Facil acesso">
+                                <label class="form-check-label" for="rAmeacaArmaSF">
+                                    Sim, tem <span class="sublinhado">fácil acesso</span> a uma arma de fogo
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAmeacaArma" id="rAmeacaArmaNS"
+                                    value="Nao sabe">
+                                <label class="form-check-label" for="rAmeacaArmaNS">
+                                    Não sabe
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="divAmeacaArmaUsou" class="form-row form-group col-sm-12 mt-3">
+                            <label class="main-label" id="lAmeacaArmaUsou" for="taAmeacaArmaUsou">
+                                Informe como, quando e onde o suspeito usou arma de fogo.<br>Há registro de B.O.
+                                referente a este fato?
+                            </label>
+                            <textarea class="form-control" name="taAmeacaArmaUsou" id="taAmeacaArmaUsou"
+                                rows="5">A vítima informou que o suspeito usou arma de fogo ...</textarea>
+                        </div>
+
+                        <div id="divAmeacaArmaAmeacou" class="form-row form-group col-sm-12 mt-3">
+                            <label class="main-label" id="lAmeacaArmaAmeacou" for="taAmeacaArmaAmeacou">
+                                Informe como, quando e onde o suspeito ameaçou usar arma de fogo.<br>Há registro de B.O.
+                                referente a este fato?
+                            </label>
+                            <textarea class="form-control" name="taAmeacaArmaAmeacou" id="taAmeacaArmaAmeacou"
+                                rows="5">A vítima informou que o suspeito ameaçou usar arma de fogo ...</textarea>
+                        </div>
+
+                        <div id="divAmeacaArmaFacil" class="form-row form-group col-sm-12 mt-3">
+                            <label class="main-label" id="lAmeacaArmaFacil" for="taAmeacaArmaFacil">
+                                Informe detalhes referentes ao fácil acesso a arma de fogo.
+                            </label>
+                            <textarea class="form-control" name="taAmeacaArmaFacil" id="taAmeacaArmaFacil"
+                                rows="5">A vítima informou que o suspeito tem fácil acesso a arma de fogo ...</textarea>
+                        </div>
+
+                        <div id="divAmeacaArmaNaoSabe" class="form-row form-group col-sm-12 mt-3">
+                            <label class="main-label" id="lAmeacaArmaNaoSabe" for="taAmeacaArmaNaoSabe">
+                                Informe o motivo de ter assinalado a opção "Não sabe".
+                            </label>
+                            <textarea class="form-control" name="taAmeacaArmaNaoSabe" id="taAmeacaArmaNaoSabe"
+                                rows="5">Quando perguntada sobre o suspeito ter usado ou ameaçado usar arma de fogo, ou ter fácil acesso a arma, a vítima respondeu não saber. O motivo de não saber é ...</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aAmeacaArmaUsou">
+                        <div class="alert alert-warning">
+                            É obrigatório detalhar o uso de arma de fogo (como, quando e onde), informando também se
+                            houve registro de boletim de ocorrência.
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aAmeacaArmaAmeacou">
+                        <div class="alert alert-warning">
+                            É obrigatório detalhar a ameaça de uso de arma de fogo (como, quando e onde), informando
+                            também se houve registro de boletim de ocorrência.
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aAmeacaArmaFacil">
+                        <div class="alert alert-warning">
+                            É obrigatório detalhar como o suspeito possui fácil acesso a arma de fogo.
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aAmeacaArmaNaoSabe">
+                        <div class="alert alert-warning">
+                            É obrigatório informar o motivo pelo qual a opção "Não sabe" foi assinalada com respeito ao
+                            suspeito(a) ter usado ou ameaçado usar arma de fogo, ou ter fácil acesso a arma.
+                        </div>
+                    </div>
+
+
+                    <!-- 14. RELACOES SEXUAIS -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">14. O suspeito já obrigou a vítima a praticar relações ou atos
+                                sexuais contra sua vontade?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rRelacoesSexuais"
+                                    id="rRelacoesSexuaisN" value="Nao" checked>
+                                <label class="form-check-label" for="rRelacoesSexuaisN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rRelacoesSexuais"
+                                    id="rRelacoesSexuaisS" value="Sim">
+                                <label class="form-check-label" for="rRelacoesSexuaisS">
+                                    Sim
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rRelacoesSexuais"
+                                    id="rRelacoesSexuaisNS" value="Nao sabe">
+                                <label class="form-check-label" for="rRelacoesSexuaisNS">
+                                    Não sabe
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="m-1" id="divViolenciaGraveAmeaca">
+                            <label class="main-label">Houve violência ou grave ameaça?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="violência" id="cViolencia">
+                                <label class="form-check-label" for="cViolencia">
+                                    Violência
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="grave ameaça" id="cGraveAmeaca">
+                                <label class="form-check-label" for="cGraveAmeaca">
+                                    Grave ameaça
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div id="divRelacoesSexuais" class="form-row form-group col-sm-12 mt-3">
+                            <label class="main-label" id="lRelacoesSexuais" for="taRelacoesSexuais">
+                                Como, quando e onde ocorreu o fato?
+                            </label>
+                            <textarea class="form-control" name="taRelacoesSexuais" id="taRelacoesSexuais"
+                                rows="5">A vítima informa que foi obrigada a praticar relações sexuais com o suspeito, sem violência ou grave ameaça. O fato ocorreu no ...</textarea>
+                        </div>
+
+
+                        <div id="divRelacoesSexuaisNaoSabe" class="form-row form-group col-sm-12 mt-3">
+                            <label class="main-label" id="lRelacoesSexuaisNaoSabe" for="taRelacoesSexuaisNaoSabe">
+                                Informe o motivo de ter assinalado a opção "Não sabe".
+                            </label>
+                            <textarea class="form-control" name="taRelacoesSexuaisNaoSabe" id="taRelacoesSexuaisNaoSabe"
+                                rows="5">Quando perguntada sobre ter sido obrigada a ter relações sexuais ou praticar atos sexuais contra a sua vontade, a vítima respondeu não saber. O motivo de não saber é ...</textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row" id="aRelacoesSexuais">
+                        <div class="alert alert-warning">
+                            Inclua informações sobre como, onde e quando ocorreu o ato ou relação sexual. Informe também
+                            se houve violência ou grave ameaça.
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aRelacoesSexuaisNaoSabe">
+                        <div class="alert alert-warning">
+                            É obrigatório informar o motivo pelo qual a opção "Não sabe" foi assinalada com respeito ao
+                            suspeito(a) ter obrigado a vítima a ter relações sexuais ou praticar atos sexuais contra a
+                            sua vontade.
+                        </div>
+                    </div>
+
+
+                    <!-- 15. OCORRENCIA CONTRA O SUSPEITO? -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">15. Já registrou ocorrência policial contra o suspeito?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rOcorrenciaSuspeito"
+                                    id="rOcorrenciaSuspeitoN" value="Nao" checked>
+                                <label class="form-check-label" for="rOcorrenciaSuspeitoN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rOcorrenciaSuspeito"
+                                    id="rOcorrenciaSuspeitoSS" value="SimS">
+                                <label class="form-check-label" for="rOcorrenciaSuspeitoSS">
+                                    Sim, porém <span class="sublinhado">sem medida</span> protetiva de urgência
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rOcorrenciaSuspeito"
+                                    id="rOcorrenciaSuspeitoSE" value="SimE">
+                                <label class="form-check-label" for="rOcorrenciaSuspeitoSE">
+                                    Sim, <span class="sublinhado">com medida</span> protetiva de urgência <span
+                                        class="sublinhado">com prazo de validade expirado</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 16. PARADEIRO -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label" id="lParadeiro" for="taParadeiro">16. Informe o paradeiro do suspeito:
+                            </label>
+                            <textarea class="form-control" name="taParadeiro" id="taParadeiro"
+                                rows="5">Sobre o paradeiro do suspeito, acredita-se que possa ser encontrado na </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aParadeiro">
+                        <div class="alert alert-warning">
+                            Informe o paradeiro do suspeito, ou se não se sabe o local.
+                        </div>
+                    </div>
+
+
+                    <!-- 17. VICIOS -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">17. Informe os vícios do suspeito:</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="álcool" id="cVicio1">
+                                <label class="form-check-label" for="cVicio1">
+                                    Álcool
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="cocaína" id="cVicio2">
+                                <label class="form-check-label" for="cVicio2">
+                                    Cocaína
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="crack" id="cVicio3">
+                                <label class="form-check-label" for="cVicio3">
+                                    Crack
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="maconha" id="cVicio4">
+                                <label class="form-check-label" for="cVicio4">
+                                    Maconha
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="medicamentos" id="cVicio5">
+                                <label class="form-check-label" for="cVicio5">
+                                    Medicamentos
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="outros" id="cVicio6">
+                                <label class="form-check-label" for="cVicio6">
+                                    Outros
+                                </label>
+                            </div>
+                        </div>
+                        <div id="divOutrosVicios" class="form-group col-sm-12">
+                            <label class="main-label" id="lOutrosVicios" for="iOutrosVicios">Especifique os outros
+                                vícios:</label>
+                            <input type="text" class="form-control  form-control-sm" id="iOutrosVicios"
+                                placeholder="Especificar os vícios (separados por vírgula)">
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aOutrosVicios">
+                        <div class="alert alert-warning">
+                            Informe os outros vícios do suspeito, ou desmarque a opção "Outros" acima.
+                        </div>
+                    </div>
+
+
+                    <!-- 18. REGISTRO EM MIDIA (AUDIO OU VIDEO) -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">18. Os fatos foram registrados através de <span
+                                    class="sublinhado">áudio</span> e/ou <span class="sublinhado">vídeo</span>?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rRegistroMidia" id="rRegistroMidiaN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rRegistroMidiaN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rRegistroMidia" id="rRegistroMidiaS"
+                                    value="Sim">
+                                <label class="form-check-label" for="rRegistroMidiaS">
+                                    Sim
+                                </label>
+                            </div>
+
+                            <div class="mt-3 mx-2" id="divTipoMidia">
+                                <label class="main-label" id="lTipoMidia">Em qual tipo de mídia os fatos foram
+                                    registrados?</label>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="áudio" id="cMidiaAudio">
+                                    <label class="form-check-label" for="cMidiaAudio">
+                                        Áudio
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="vídeo" id="cMidiaVideo">
+                                    <label class="form-check-label" for="cMidiaVideo">
+                                        Vídeo
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mt-3" id="divEntregouMidia">
+                                <label class="main-label">O material foi entregue na Delegacia de Polícia?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rEntregouMidia"
+                                        id="rEntregouMidiaN" value="Não">
+                                    <label class="form-check-label" for="rEntregouMidiaN">
+                                        Não
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rEntregouMidia"
+                                        id="rEntregouMidiaS" value="Sim" checked>
+                                    <label class="form-check-label" for="rEntregouMidiaS">
+                                        Sim
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="divLocalMidia" class="form-row form-group col-sm-12 mt-3">
+                                <label class="main-label" id="lLocalMidia" for="taLocalMidia">
+                                    Onde o material pode ser encontrado?
+                                </label>
+                                <textarea class="form-control" name="taLocalMidia" id="taLocalMidia"
+                                    rows="5">O material não foi entregue na Delegacia de Polícia, e pode ser encontrado ...</textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aTipoMidia">
+                        <div class="alert alert-warning">
+                            Pelo menos um dos tipos de midia (áudio ou vídeo) deve ser informado.
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aLocalMidia">
+                        <div class="alert alert-warning">
+                            Deve-se informar o local onde as midias podem ser encontradas.
+                        </div>
+                    </div>
+
+
+                    <!-- 19. DEPENDENCIA FINANCEIRA -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">19. A vítima depende financeiramente do suspeito?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rDependencia" id="rDependenciaN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rDependenciaN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rDependencia" id="rDependenciaS"
+                                    value="Sim">
+                                <label class="form-check-label" for="rDependenciaS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 20. DEFICIENCIA -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">20. A vítima possui alguma deficiência?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rDeficiente" id="rDeficienteN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rDeficienteN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rDeficiente" id="rDeficienteS1"
+                                    value="Preexistente">
+                                <label class="form-check-label" for="rDeficienteS1">
+                                    Sim, preexistente ao fato, <span class="sublinhado">não agravada</span> pela
+                                    violência sofrida
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rDeficiente" id="rDeficienteS2"
+                                    value="Agravada">
+                                <label class="form-check-label" for="rDeficienteS2">
+                                    Sim, preexistente ao fato, <span class="sublinhado">agravada</span> pela violência
+                                    sofrida
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rDeficiente" id="rDeficienteS3"
+                                    value="Causada">
+                                <label class="form-check-label" for="rDeficienteS3">
+                                    Sim, <span class="sublinhado">causada</span> pela violência sofrida
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 21. ABRIGO -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">21. A vítima deseja ser abrigada?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAbrigo" id="rAbrigoN" value="Nao"
+                                    checked>
+                                <label class="form-check-label" for="rAbrigoN">
+                                    Não
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rAbrigo" id="rAbrigoS" value="Sim">
+                                <label class="form-check-label" for="rAbrigoS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 22. PERTENCES -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label">22. A vítima solicita auxílio para buscar os seus pertences
+                                pessoais?</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rPertences" id="rPertencesN"
+                                    value="Nao" checked>
+                                <label class="form-check-label" for="rPertencesN">
+                                    Não
+                                </label>
+                            </div>
+                            <div class=" form-check">
+                                <input class="form-check-input" type="radio" name="rPertences" id="rPertencesS"
+                                    value="Sim">
+                                <label class="form-check-label" for="rPertencesS">
+                                    Sim
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 23. ORIENTACOES A SEREM INCLUIDAS NO HISTORICO -->
+                    <div class="form-row pt-3 pl-3 pr-3 pb-1 mt-3 rounded container-border">
+                        <div class="form-group col-sm-12">
+                            <label class="main-label" id="lOutrosHistorico">23. Orientações:</label>
+                            <div class="form-check my-3">
+                                <input class="form-check-input" type="checkbox" value="informacoesMedidas"
+                                    id="cOutrosHistorico1">
+                                <label class="form-check-label" for="cOutrosHistorico1">
+                                    <div style="line-height: 1.7em;">
+                                        Orientada a contatar o
+                                        <input type="text" class="form-control form-control-sm"
+                                            style="display: inline; width: 25em; height: 1.7em;" id="iLocalInfo"
+                                            value="Fórum Central">
+                                        para obter informações da Medida Protetiva de Urgência em até
+                                        <input type="text" class="form-control form-control-sm"
+                                            style="display: inline; width: 4em; height: 1.7em;" id="iPrazoInfo"
+                                            value="72">
+                                        horas.
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check my-3">
+                                <input class="form-check-input" type="checkbox" value="novaOcorrencia"
+                                    id="cOutrosHistorico2">
+                                <label class="form-check-label" for="cOutrosHistorico2">
+                                    <div style="line-height: 1.7em;">
+                                        Orientada a registrar nova ocorrência, para novos encaminhamentos, caso houver
+                                        descumprimento da Medida Protetiva de Urgência, e orientada a entrar em contato
+                                        com
+                                        <input type="text" class="form-control form-control-sm"
+                                            style="display: inline; width: 25em; height: 1.7em;" id="iLocalRevogar"
+                                            value="o Fórum">
+                                        caso deseje a revogação da medida.
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" value="provasComplementares"
+                                    id="cOutrosHistorico3">
+                                <label class="form-check-label" for="cOutrosHistorico3">
+
+                                    <div style="line-height: 1.7em;">
+                                        Orientada a encaminhar
+                                        <input type="text" class="form-control form-control-sm"
+                                            style="display: inline; width: 20em; height: 1.7em;" id="iLocalProvas"
+                                            value="ao cartório da DEAM">
+                                        no prazo de
+                                        <input type="text" class="form-control form-control-sm"
+                                            style="display: inline; width: 4em; height: 1.7em;" id="iPrazoProvas"
+                                            value="5">
+                                        dias úteis, provas complementares caso surjam, através do(s):
+
+                                        <div class="form-check ml-5 mt-1 p-1" id="divOutrosHistorico3Email">
+                                            <input class="form-check-input" type="checkbox" value="EmailProvas"
+                                                id="cOutrosHistorico3Email">
+                                            <label class="form-check-label" for="cOutrosHistorico3Email">
+                                                E-mail
+                                                <input type="text" class="form-control form-control-sm"
+                                                    style="display: inline; width: 20em; height: 1.7em;"
+                                                    id="iEmailProvas" value="@pc.rs.gov.br">
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check ml-5 mt-1 p-1" id="divOutrosHistorico3Fone">
+                                            <input class="form-check-input" type="checkbox" value="FoneProvas"
+                                                id="cOutrosHistorico3Fone">
+                                            <label class="form-check-label" for="cOutrosHistorico3Fone">
+                                                Whatsapp
+                                                <input type="text" class="form-control form-control-sm"
+                                                    style="display: inline; width: 10em; height: 1.7em;"
+                                                    id="iFoneProvas" value="(51) 9999-99999">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aOutrosHistorico">
+                        <div class="alert alert-warning">
+                            Os itens marcados devem ser devidamente preenchidos.
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="aOutrosHistoricoFoneEmail">
+                        <div class="alert alert-warning">
+                            Pelo menos um dos dois, E-mail ou Whatsapp, deve ser marcado.
+                        </div>
+                    </div>
+
+
+                    <!-----  FINAL DOS INPUTS ----->
+
+                    <div class="form-row mt-5 mb-5">
+                        <div class="form-group col-sm-12">
+                            <div class="btn btn-primary" name="btnGerar" id="btnGerar">Gerar Histórico e Termo de
+                                Informações</div>
+                        </div>
+                    </div>
+
+                    <div id="divHistorico" class="form-row">
+                        <div class="form-group col-sm-12">
+                            <h5 class="mt-5">Histórico</h5>
+                        </div>
+
+
+
+                        <div class="form-group col-sm-12">
+                            <textarea class="form-control" name="taHistorico" id="taHistorico" rows="15"></textarea>
+                        </div>
+
+                        <div id="divInfoHistorico" class="form-group col-sm-12">
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <div class="btn btn-outline-primary" name="btnCopiarHistorico" id="btnCopiarHistorico">
+                                    Copiar
+                                    Histórico</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="divTermo" class="form-row">
+
+                        <div class="form-group col-sm-12">
+                            <h5 class="mt-5">Termo de Informações</h5>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <textarea class="form-control" name="taTermo" id="taTermo" rows="15"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <div class="btn btn-outline-primary" name="btnCopiarTermo" id="btnCopiarTermo">Copiar
+                                    Termo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="./js/jquery.slim.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/bootbox.min.js"></script>
+<script src="./js/hibo.js"></script>
